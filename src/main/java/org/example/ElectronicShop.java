@@ -31,7 +31,7 @@ class ElectronicsShop {
             preparedStatement.setInt(5, newProduct.getPrice());
             preparedStatement.executeUpdate();
             for (ShopSubscriber subscriber : subscribers) {
-                subscriber.update(newProduct);
+                subscriber.add(newProduct);
             }
             //notifying
         } catch (SQLException e) {
@@ -114,6 +114,9 @@ class ElectronicsShop {
             preparedStatement.setInt(4, product.getPrice());
             preparedStatement.setInt(5, product.getId());
             preparedStatement.executeUpdate();
+            for (ShopSubscriber subscriber : subscribers) {
+                subscriber.update(product);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -127,6 +130,7 @@ class ElectronicsShop {
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
+
         }
     }
 

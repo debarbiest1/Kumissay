@@ -72,7 +72,13 @@ class Client implements ShopSubscriber{
     }
 
     @Override
-    public void update(Product product) {
+    public void add(Product product) {
         System.out.println("Notification: New product added - " + product.getName());
     }
+    @Override
+    public void update(Product product) {
+        System.out.println("Notification: The new price for - " + product.getName());
+    }
+
+
 }
