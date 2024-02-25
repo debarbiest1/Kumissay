@@ -7,9 +7,7 @@ class Product {
     private String category;
     private int year;
     private int price;
-    public Product() {
-
-    }
+    public Product() {}
     public Product(int product_id, String name, String category, int year, int price ) {
         setId(product_id);
         setName(name);

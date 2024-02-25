@@ -9,11 +9,7 @@ class Client implements ShopSubscriber{
     private String address;
     private String number;
     private String email;
-
-
-    public Client(){
-
-    }
+    public Client(){}
     public Client(int client_id, String name, String surname, String address, String number, String email){
         setClient_id(client_id);
         setName(name);
@@ -79,6 +75,8 @@ class Client implements ShopSubscriber{
     public void update(Product product) {
         System.out.println("Notification: The new price for - " + product.getName());
     }
+
+
 
 
 }
