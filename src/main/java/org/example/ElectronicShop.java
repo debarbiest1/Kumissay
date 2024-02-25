@@ -5,14 +5,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 class ElectronicsShop {
+    private static ElectronicsShop instance;
     public List<Client> clients;
     public List<Product> products;
     private List<ShopSubscriber> subscribers;
-    public ElectronicsShop(){
+    private ElectronicsShop(){
         clients=new ArrayList<>();
         products=new ArrayList<>();
         subscribers = new ArrayList<>();
 
+    }
+    public static ElectronicsShop getInstance() {
+        if (instance == null) {
+            instance = new ElectronicsShop();
+        }
+        return instance;
     }
     public void addSubscriber(ShopSubscriber subscriber){
         subscribers.add(subscriber);

@@ -7,7 +7,7 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        ElectronicsShop shop = new ElectronicsShop();
+        ElectronicsShop shop = ElectronicsShop.getInstance();
         try {
             Connection cn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "1234");
             Statement statement = cn.createStatement();
