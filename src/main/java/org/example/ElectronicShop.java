@@ -52,10 +52,4 @@ class ElectronicsShop {
         }
         System.out.println("Product given to client successfully.");
     }
-
-
-
-
-
-
 }

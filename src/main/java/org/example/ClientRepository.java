@@ -4,8 +4,8 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ClientRepository {
-    public static void addClient(Client client) {
+public class ClientRepository implements Repository<Client>{
+    public void add(Client client) {
     try (Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "1234");
          PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO clients (client_id, client_name, client_surname, client_address, client_number, email) VALUES (?, ?, ?, ?, ?, ?)")) {
             preparedStatement.setInt(1, client.getClient_id());
@@ -20,7 +20,7 @@ public class ClientRepository {
         }
     }
 
-    public static List<Client> showAllClients() {
+    public List<Client> showAll() {
         List<Client> clients = new ArrayList<>();
         try (Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "1234");
              Statement statement = connection.createStatement();
@@ -35,5 +35,81 @@ public class ClientRepository {
             e.printStackTrace();
         }
         return clients;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public void delete(int id){
+
+    }
+    public void update(Client client){
+
     }
 }

@@ -4,9 +4,12 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductRepository {
+public class ProductRepository implements Repository<Product>{
     private List<ShopSubscriber> subscribers;
-    public static void addProduct(Product newProduct) {
+    public ProductRepository() {
+        subscribers = new ArrayList<>();
+    }
+    public void add(Product newProduct) {
         try (Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "1234");
              PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO Products (product_id, product_name, product_category, product_year, price) VALUES (?, ?, ?, ?, ?)")) {
             preparedStatement.setInt(1, newProduct.getId());
@@ -23,7 +26,7 @@ public class ProductRepository {
 
     }
 
-    public static void updateProduct(Product product) {
+    public void update(Product product) {
         try (Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "1234");
              PreparedStatement preparedStatement = connection.prepareStatement("UPDATE products SET product_name=?, product_category=?, product_year=?, price=? WHERE product_id=?")) {
             preparedStatement.setString(1, product.getName());
@@ -39,7 +42,7 @@ public class ProductRepository {
     }
 
 
-    public static void deleteProduct(int productId) {
+    public void delete(int productId) {
         try (Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "1234");
              PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM products WHERE product_id=?")) {
             preparedStatement.setInt(1, productId);
@@ -49,7 +52,7 @@ public class ProductRepository {
 
         }
     }
-    public static List<Product> showAllProducts() {
+    public List<Product> showAll() {
         List<Product> products = new ArrayList<>();
         try (Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "1234");
              Statement statement = connection.createStatement();
